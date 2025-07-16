@@ -1,0 +1,85 @@
+/* login.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #2c3e50, #3498db);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+input[type='email'],
+input[type='password'] {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.show-password {
+  margin-top: 0.4rem;
+}
+
+.remember-me {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.remember-me input {
+  margin-right: 0.5rem;
+}
+
+.login-btn {
+  background-color: #3498db;
+  color: white;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background-color: #2980b9;
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 1.2rem;
+  }
+}

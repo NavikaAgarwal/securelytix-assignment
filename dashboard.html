@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Securelytix Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    }
+
+    .navbar {
+      background-color: #2c3e50;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .navbar h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .logout-btn {
+      background-color: #e74c3c;
+      border: none;
+      padding: 0.5rem 1rem;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background-color: #c0392b;
+    }
+
+    .dashboard {
+      max-width: 900px;
+      margin: 3rem auto;
+      background: #ffffffcc;
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 2rem;
+    }
+
+    .dropdown-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .dropdown {
+      flex: 1 1 45%;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #34495e;
+    }
+
+    select {
+      width: 100%;
+      padding: 0.6rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background-color: #f8f8f8;
+      transition: border-color 0.3s ease;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: #3498db;
+    }
+
+    .details {
+      background-color: #f9f9fb;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.02);
+      font-size: 1rem;
+      color: #2c3e50;
+    }
+
+    .details-box strong {
+      color: #34495e;
+    }
+
+    @media (max-width: 600px) {
+      .dropdown-container {
+        flex-direction: column;
+      }
+
+      .dropdown {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <h1>Securelytix</h1>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <div class="dashboard">
+    <h2>Welcome to Securelytix Dashboard</h2>
+    <div class="dropdown-container">
+      <div class="dropdown">
+        <label for="clientSelect">Select Client</label>
+        <select id="clientSelect">
+          <option value="">-- Choose Client --</option>
+        </select>
+      </div>
+      <div class="dropdown">
+        <label for="employeeSelect">Select Employee</label>
+        <select id="employeeSelect">
+          <option value="">-- Choose Employee --</option>
+        </select>
+      </div>
+    </div>
+    <div class="details" id="detailsBox">
+      <p>Select a Client or Employee to view details.</p>
+    </div>
+  </div>
+
+  <script>
+    const clients = [
+      { name: "Alpha Corp", role: "Premium Client", contact: "alpha@corp.com" },
+      { name: "Beta Ltd", role: "Standard Client", contact: "beta@ltd.com" },
+      { name: "Gamma Inc", role: "Enterprise Client", contact: "gamma@inc.com" }
+    ];
+
+    const employees = [
+      { name: "John Doe", role: "Account Manager", contact: "john.doe@securelytix.com" },
+      { name: "Jane Smith", role: "Customer Success", contact: "jane.smith@securelytix.com" },
+      { name: "Sam Wilson", role: "Tech Support", contact: "sam.wilson@securelytix.com" }
+    ];
+
+    const clientSelect = document.getElementById('clientSelect');
+    const employeeSelect = document.getElementById('employeeSelect');
+    const detailsBox = document.getElementById('detailsBox');
+
+    clients.forEach((client, index) => {
+      const opt = document.createElement('option');
+      opt.value = index;
+      opt.textContent = client.name;
+      clientSelect.appendChild(opt);
+    });
+
+    employees.forEach((employee, index) => {
+      const opt = document.createElement('option');
+      opt.value = index;
+      opt.textContent = employee.name;
+      employeeSelect.appendChild(opt);
+    });
+
+    function showDetails(data) {
+      detailsBox.innerHTML = `
+        <div class="details-box">
+          <strong>Name:</strong> ${data.name} <br>
+          <strong>Role:</strong> ${data.role} <br>
+          <strong>Contact:</strong> ${data.contact}
+        </div>
+      `;
+    }
+
+    clientSelect.addEventListener('change', (e) => {
+      const idx = e.target.value;
+      if (idx !== "") {
+        showDetails(clients[idx]);
+        employeeSelect.value = "";
+      } else {
+        detailsBox.innerHTML = '<p>Select a Client or Employee to view details.</p>';
+      }
+    });
+
+    employeeSelect.addEventListener('change', (e) => {
+      const idx = e.target.value;
+      if (idx !== "") {
+        showDetails(employees[idx]);
+        clientSelect.value = "";
+      } else {
+        detailsBox.innerHTML = '<p>Select a Client or Employee to view details.</p>';
+      }
+    });
+
+    function logout() {
+      alert("You have been logged out.");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

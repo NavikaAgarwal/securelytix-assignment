@@ -1,0 +1,80 @@
+/* dashboard.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f2f5;
+  padding: 2rem;
+}
+
+.dashboard {
+  max-width: 900px;
+  margin: auto;
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+}
+
+.dropdown-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.dropdown {
+  flex: 1 1 45%;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #34495e;
+  font-weight: 500;
+}
+
+select {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fdfdfd;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+select:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.details {
+  background-color: #ecf0f1;
+  padding: 1.2rem;
+  border-radius: 8px;
+  color: #2c3e50;
+  font-size: 1rem;
+  min-height: 100px;
+  transition: all 0.3s ease;
+}
+
+.details-box strong {
+  color: #34495e;
+}
+
+@media (max-width: 600px) {
+  .dropdown-container {
+    flex-direction: column;
+  }
+
+  .dropdown {
+    flex: 1 1 100%;
+  }
+}
